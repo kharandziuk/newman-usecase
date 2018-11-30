@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "express": "^4.16.4",
+    "newman": "^4.2.2"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "newman": "newman run -e local.postman_environment.json authentiacation.postman_collection.json"
+  }
+}

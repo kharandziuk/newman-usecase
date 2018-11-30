@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "2ed6a08e-f678-4e14-804b-6fb8555e4f35",
+		"name": "authentiacation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "authenticaiton",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ffc0f4e6-fe72-4ec3-9f32-cbaba55cadcd",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});",
+							"const { token } = pm.response.json()",
+							"pm.globals.set(\"AUTH\", token);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"username\",\n\t\"password\": \"password\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/auth",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "call list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "AUTH",
+						"value": "{{AUTH}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/list",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"list"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
